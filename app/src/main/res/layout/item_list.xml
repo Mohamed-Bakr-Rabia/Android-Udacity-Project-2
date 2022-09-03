@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+        name="asteroid"
+        type="com.udacity.asteroidradar.database.Asteroid" />
+        <variable
+            name="clickListener"
+            type="com.udacity.asteroidradar.main.AsteroidListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical"
+        android:onClick="@{()->clickListener.onClick(asteroid)}"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:textSize="28sp"
+                tools:ignore="TextContrastCheck"
+                android:text="@{asteroid.codename.toString()}"/>
+
+            <TextView
+                android:id="@+id/close_approach_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{asteroid.closeApproachDate}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#99FFFFFF"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/is_potentially_hazardous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            contentDescription="@{asteroid.potentiallyHazardous}"
+            android:padding="16dp"
+            statusIcon="@{asteroid.potentiallyHazardous}"
+            tools:ignore="HardcodedText,ImageContrastCheck,contentDescription"
+             />
+
+    </LinearLayout>
+
+</layout>
+
